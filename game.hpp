@@ -8,6 +8,10 @@ struct Player{
 struct GameState{
   Camera3D camera;
   Player player;
+  Shader shader;
+
+  int lightColorLoc;
+  int objectsColorLoc;
 
   void Initialize(){
 
@@ -21,6 +25,11 @@ struct GameState{
     //Player Initialize
     player.position = (Vector3){0.0f, 0.5f, 0.0f};
     player.speed = 4.0f;
+
+    //Shader Initialize
+    shader = LoadShader(0, "Assets/light.glsl");
+    lightColorLoc = GetShaderLocation(shader, "lightColor");
+    objectsColorLoc = GetShaderLocation(shader, "objectsColor");
   }
 
   void Update(float deltaTime){
@@ -38,10 +47,20 @@ struct GameState{
 
   void Draw(){
     BeginDrawing();
-    ClearBackground(RAYWHITE);
+    ClearBackground(BLACK);
 
     BeginMode3D(camera);
+    BeginShaderMode(shader);
+
+    Vector3 lightColor = (Vector3){1.0f, 1.0f, 1.0f};
+    Vector3 objectsColor = (Vector3){1.0f, 0.0f, 0.0f};
+
+    SetShaderValue(shader, lightColorLoc, &lightColor, SHADER_UNIFORM_VEC3);
+    SetShaderValue(shader, objectsColorLoc, &objectsColor, SHADER_UNIFORM_VEC3);
+
     DrawCube(player.position, 1.0f, 1.0f, 1.0f, RED);
+
+    EndShaderMode();
     EndMode3D();
     EndDrawing();
   }
