@@ -1,12 +1,14 @@
 #-----------------------------------[Variables]-----------------------------------
 
-NAME=									game
+NAME= game
 
-CC=										g++
+CC= g++
 
-SRC=									main.cpp
+SRC=	main.cpp\
+			game.cpp\
+			Player/player.cpp
 
-FLAG=									-Wall -Wextra -Werror
+FLAG= -Wall -Wextra -Werror
 
 #---------------------------------------[Func]-------------------------------------
 
