@@ -7,7 +7,9 @@ int main(){
   InitWindow(WinWidth, WinHeight, "3DGame");
 
   GameState game;
+  World     world;
   game.Initialize();
+  world.Load();
 
   SetTargetFPS(60);
   while (!WindowShouldClose()){
@@ -15,6 +17,8 @@ int main(){
 
     game.Update(deltaTime);
     game.Draw();
+    world.Draw();
   }
+  world.Unload();
   CloseWindow();
 }

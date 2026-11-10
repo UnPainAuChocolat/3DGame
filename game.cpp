@@ -1,7 +1,7 @@
 #include "game.hpp"
+#include "raymath.h"
 
 void GameState::Initialize(){
-
   //Camera Initialize
   camera.position = (Vector3){0.0f, 10.0f, 10.0f};
   camera.target = (Vector3){0.0f, 0.0f, 0.0f};
@@ -12,16 +12,11 @@ void GameState::Initialize(){
   //Player Initialize
   player.position = (Vector3){0.0f, 0.5f, 0.0f};
   player.speed = 4.0f;
-
-  //Shader Initialize
-  shader = LoadShader(0, "Assets/light.glsl");
-  lightColorLoc = GetShaderLocation(shader, "lightColor");
-  objectsColorLoc = GetShaderLocation(shader, "objectsColor");
 }
 
 void GameState::Update(float deltaTime){
-  camera.target = player.position;
   player.Update(deltaTime);
+  camera.target = player.position;
 }
 
 void GameState::Draw(){
@@ -29,17 +24,9 @@ void GameState::Draw(){
   ClearBackground(BLACK);
 
   BeginMode3D(camera);
-  BeginShaderMode(shader);
-
-  Vector3 lightColor = (Vector3){1.0f, 1.0f, 1.0f};
-  Vector3 objectsColor = (Vector3){1.0f, 1.0f, 1.0f};
-
-  SetShaderValue(shader, lightColorLoc, &lightColor, SHADER_UNIFORM_VEC3);
-  SetShaderValue(shader, objectsColorLoc, &objectsColor, SHADER_UNIFORM_VEC3);
 
   DrawCube(player.position, 1.0f, 1.0f, 1.0f, RED);
 
-  EndShaderMode();
   EndMode3D();
   EndDrawing();
 }

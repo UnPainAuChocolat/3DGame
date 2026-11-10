@@ -6,7 +6,8 @@ CC= g++
 
 SRC=	main.cpp\
 			game.cpp\
-			Player/player.cpp
+			Player/player.cpp\
+			Level/world.cpp
 
 FLAG= -Wall -Wextra -Werror
 
