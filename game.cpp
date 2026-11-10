@@ -3,7 +3,7 @@
 
 void GameState::Initialize(){
   //Camera Initialize
-  camera.position = (Vector3){0.0f, 10.0f, 10.0f};
+  camera.position = (Vector3Add(player.position, (Vector3){0.0f, 1.5f, 0.0f}));
   camera.target = (Vector3){0.0f, 0.0f, 0.0f};
   camera.up = (Vector3){0.0f, 1.0f, 0.0f};
   camera.fovy = 45.0f;
@@ -11,22 +11,15 @@ void GameState::Initialize(){
 
   //Player Initialize
   player.position = (Vector3){0.0f, 0.5f, 0.0f};
-  player.speed = 4.0f;
+  player.speed = 4;
+  player.sensibility = 0.05f;
 }
 
 void GameState::Update(float deltaTime){
-  player.Update(deltaTime);
-  camera.target = player.position;
+  player.Update(deltaTime, &camera);
 }
 
 void GameState::Draw(){
-  BeginDrawing();
   ClearBackground(BLACK);
-
-  BeginMode3D(camera);
-
-  DrawCube(player.position, 1.0f, 1.0f, 1.0f, RED);
-
-  EndMode3D();
-  EndDrawing();
+  DrawCube(player.position, 1.0f, 2.0f, 1.0f, RED);
 }

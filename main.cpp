@@ -8,17 +8,22 @@ int main(){
 
   GameState game;
   World     world;
+  DisableCursor();
   game.Initialize();
   world.Load();
 
   SetTargetFPS(60);
   while (!WindowShouldClose()){
     float deltaTime = GetFrameTime();
-
-    game.Update(deltaTime);
-    game.Draw();
-    world.Draw();
+    BeginDrawing();
+      BeginMode3D(game.camera);
+        game.Update(deltaTime);
+        game.Draw();
+        world.Draw();
+      EndMode3D();
+    EndDrawing();
   }
+  EnableCursor();
   world.Unload();
   CloseWindow();
 }
