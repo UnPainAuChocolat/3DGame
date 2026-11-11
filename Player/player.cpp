@@ -28,18 +28,13 @@ void Player::Update(float deltaTime, Camera3D *camera){
   moveDir = Vector3Scale(moveDir, speed * deltaTime);
   position = Vector3Add(position, moveDir);
 
-  float maxTilt = 0.04f;
+  float maxTilt = 0.01f;
 
-  float targetPitch = input_forward * maxTilt;
   float targetRoll = input_side * maxTilt;
 
   CameraUpdate(camera);
 
   Vector3 baseUp = (Vector3){0.0f, 1.0f, 0.0f};
-  Vector3 tiltOffset = Vector3Add(
-      Vector3Scale(right, targetRoll),
-      Vector3Scale(forward, targetPitch)
-  );
-  
-  camera->up = Vector3Normalize(Vector3Add(baseUp, tiltOffset));
+
+  camera->up = Vector3Lerp(camera->up, Vector3Add(baseUp, Vector3Scale(right, targetRoll)), 5.f * deltaTime);
 }
