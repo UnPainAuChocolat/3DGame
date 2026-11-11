@@ -7,7 +7,7 @@ CC= g++
 SRC=	main.cpp\
 			game.cpp\
 			Player/player.cpp\
-			Player/Camera/camera.cpp\
+			Player/camera.cpp\
 			Level/world.cpp
 
 FLAG= -Wall -Wextra -Werror

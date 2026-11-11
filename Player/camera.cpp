@@ -1,8 +1,7 @@
-#include "../player.hpp"
+#include "player.hpp"
 
 Vector2  lookRotation = {0.0f, 0.0f};
 Vector2  mouseDelta;
-Vector3  yam;
 Vector3  up = (Vector3){0.0f, 1.0f, 0.0f};
 
 void  Player::CameraUpdate(Camera3D *camera)
@@ -18,12 +17,12 @@ void  Player::CameraUpdate(Camera3D *camera)
   if (lookRotation.y < -90.0f)
     lookRotation.y = -90.0f;
 
-  direction = {0.0f, 0.0f, 1.0f};
+  forward = {0.0f, 0.0f, 1.0f};
 
   Vector3 axeHorizontal = {1.0f, 0.0f, 0.0f};
-  direction = Vector3RotateByAxisAngle(direction, axeHorizontal, -(lookRotation.y) * DEG2RAD);
+  forward = Vector3RotateByAxisAngle(forward, axeHorizontal, -(lookRotation.y) * DEG2RAD);
 
-  direction = Vector3RotateByAxisAngle(direction, up, lookRotation.x * DEG2RAD);
+  forward = Vector3RotateByAxisAngle(forward, up, lookRotation.x * DEG2RAD);
 
-  camera->target = Vector3Add(camera->position, direction);
+  camera->target = Vector3Add(camera->position, forward);
 }

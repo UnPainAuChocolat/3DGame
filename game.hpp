@@ -1,5 +1,9 @@
+#ifndef GAME_HPP
+#define GAME_HPP
+
 #include "raylib.h"
 #include "raymath.h"
+#include <stdio.h>
 #include "Player/player.hpp"
 #include "Level/world.hpp"
 
@@ -14,3 +18,5 @@ class GameState{
     void      Update(float deltaTime);
     void      Draw();
 };
+
+#endif

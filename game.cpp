@@ -11,7 +11,7 @@ void GameState::Initialize(){
 
   //Player Initialize
   player.position = (Vector3){0.0f, 0.5f, 0.0f};
-  player.speed = 4;
+  player.speed = 8.f;
   player.sensibility = 0.05f;
 }
 
@@ -21,5 +21,4 @@ void GameState::Update(float deltaTime){
 
 void GameState::Draw(){
   ClearBackground(BLACK);
-  DrawCube(player.position, 1.0f, 2.0f, 1.0f, RED);
 }

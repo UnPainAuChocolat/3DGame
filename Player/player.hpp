@@ -3,12 +3,13 @@
 
 #include "raylib.h"
 #include "raymath.h"
+#include <cstdio>
 
 //Player class
 class Player{
   public:
     Vector3   position;
-    Vector3   direction;
+    Vector3   forward;
     float     sensibility;
     float     speed;
 
