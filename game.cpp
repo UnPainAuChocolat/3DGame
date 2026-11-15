@@ -13,6 +13,7 @@ void GameState::Initialize(){
   player.position = (Vector3){0.0f, 0.5f, 0.0f};
   player.speed = 8.f;
   player.sensibility = 0.05f;
+  player.fov = 45.0f;
 }
 
 void GameState::Update(float deltaTime){

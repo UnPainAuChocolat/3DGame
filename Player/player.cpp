@@ -28,7 +28,8 @@ void Player::Update(float deltaTime, Camera3D *camera){
   moveDir = Vector3Scale(moveDir, speed * deltaTime);
   position = Vector3Add(position, moveDir);
 
-  float maxTilt = 0.01f;
+  //manage camera tilting
+  float maxTilt = 0.02f;
 
   float targetRoll = input_side * maxTilt;
 
@@ -37,4 +38,11 @@ void Player::Update(float deltaTime, Camera3D *camera){
   Vector3 baseUp = (Vector3){0.0f, 1.0f, 0.0f};
 
   camera->up = Vector3Lerp(camera->up, Vector3Add(baseUp, Vector3Scale(right, targetRoll)), 5.f * deltaTime);
+
+  //manage camera forward anim
+  float maxFov = 5.f;
+
+  float targetFov = (input_forward * maxFov) + fov;
+
+  camera->fovy = Lerp(camera->fovy, targetFov, 10.f * deltaTime);
 }

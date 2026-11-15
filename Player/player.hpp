@@ -12,6 +12,7 @@ class Player{
     Vector3   forward;
     float     sensibility;
     float     speed;
+    float     fov;
 
     void  Update(float deltaTime, Camera3D *camera);
 
