@@ -10,12 +10,10 @@
 //GameState
 class GameState{
   public:
-    Camera3D  camera;
-    Player    player;
     Shader    shader;
 
     void      Initialize();
-    void      Update(float deltaTime);
+    //void      Update(float deltaTime);
     void      Draw();
 };
 

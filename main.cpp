@@ -11,13 +11,14 @@ int main(){
   DisableCursor();
   game.Initialize();
   world.Load();
+  Player player((Vector3){0.f, 0.f, 0.f}, 0.04f, 45.f);
 
   SetTargetFPS(60);
   while (!WindowShouldClose()){
     float deltaTime = GetFrameTime();
     BeginDrawing();
-      BeginMode3D(game.camera);
-        game.Update(deltaTime);
+      BeginMode3D(player.first_person_camera);
+        player.Update(deltaTime);
         game.Draw();
         world.Draw();
       EndMode3D();
